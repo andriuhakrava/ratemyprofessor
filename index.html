@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Rate my Proffesor</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<button id="page-menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</header>
+	</div>
+		<section class="home-page">
+			<div id="menu-faculties">
+				<div class="faculties-list" id="facult-item">
+					<span class="close" id="exit">&times;</span>
+					<div id="faculties"></div>
+				</div>
+			</div>
+			<h1>rate my proffesor</h1>
+			<p>It is important to know what to expect from your teacher?</p>
+			<form action="" method="" autocomplete="off">
+				<div class="search-field">
+					<input type="search" id="search" placeholder="Search..." onkeyup = "searchProf();">
+					<button type="submit" id="searchbutt">
+						<img src="img/search.png" alt="search">
+					</button>
+				</div>
+				<div class="search-list" id="slist"></div>
+			</form>
+		</section>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

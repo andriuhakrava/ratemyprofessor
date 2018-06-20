@@ -1,0 +1,326 @@
+* {
+	outline: none;
+}
+
+@font-face {
+  font-family: 'HelveticaNeue-Medium';
+  src: url('../fonts/HelveticaNeue-Medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('../fonts/HelveticaNeue.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: 'HelveticaNeue', sans-serif;
+	overflow-x: hidden;
+}
+
+.wrapper {
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+header {
+	display: flex;
+	justify-content: flex-end;
+	padding: 18px 0 0;
+}
+
+.home-page {
+	width: 100vw;
+	height: 100vh;
+	padding-top: 55px;
+	box-sizing: border-box;
+	background: url(../img/Background.png);
+	background-size: cover;
+}
+
+button {
+	background: transparent;
+	border: none;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+header button span {
+	display: block;
+	margin-top: 12px;
+	height: 5px;
+	width: 55px;
+	background: #ffc106;
+}
+
+h1 {
+	margin: 0 0 12px;
+	font-family: 'HelveticaNeue-Medium', sans-serif;
+	font-size: 56px;
+	text-transform: uppercase;
+	text-align: center;
+	color: #00226c;
+}
+
+h2 {
+	padding-left: 47px;
+	font-size: 23px;
+	font-weight: bold;
+	color: #fff;
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+a:hover {
+	color: #00226c;
+}
+
+p {
+	margin: 0;
+	font-size: 20px;
+	text-align: center;
+	color: #00226c;
+}
+
+img {
+	display: block;
+	width: 100%;
+}
+
+form {
+	margin-top: 50px;
+	text-align: center;
+}
+
+.search-field {
+	position: relative;
+	max-width: 550px;
+	width: 100%;
+	height: 75px;
+	margin: 0 auto;
+}
+
+.search-field input {
+	box-sizing: border-box;
+	max-width: 550px;
+	width: 100%;
+	height: 75px;
+	padding: 25px 105px 25px 25px;
+	font-size: 25px;
+	border: none;
+	border-radius: 25px;
+	background: #d9d9d9;
+}
+
+.search-field button[type=submit] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 92px;
+	height: 75px;
+	background: #ffc106;
+	border-radius: 25px;
+}
+
+.search-field button[type=submit] img {
+	display: inline-block;
+	margin: 0 auto;
+	width: 53px;
+	height: 51px;
+}
+
+.search-list {
+	display: none;
+	max-width: 590px;
+	padding: 15px 0;
+	width: 100%;
+	margin: 0 auto;
+	background: #d9d9d9;
+	border-radius: 25px;
+}
+
+.search-list span {
+	display: block;
+	margin: 7px 0;
+	font-size: 23px;
+	color: #000;
+}
+
+.search-list span:hover {
+	background: #ffc106;
+}
+
+.search-list span a {
+	display: block;
+	line-height: 36px;
+}
+
+#menu-faculties {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.faculties-list {
+	display: flex;
+	position: relative;
+	margin: 1% auto;
+	padding: 55px 0 15px;
+	box-sizing: border-box;
+	max-width: 648px;
+	max-height: 668px;
+	border-radius: 45px;
+	background: url('../img/girl.png');
+	background-size: cover;
+}
+
+.faculties-list #faculties {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	margin: 0;
+	padding-left: 47px;
+	height: 620px;
+	list-style: none;
+}
+
+.faculties-list #faculties span {
+	display: inline-block;
+	margin: 8px 120px 8px 0;
+	font-size: 23px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.faculties-list #faculties span:hover {
+	cursor: pointer;
+	color: blue;
+}
+
+#faculties span a {
+	display: inline-block;
+	max-width: 290px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.faculties-list .close {
+	position: absolute;
+	top: 15px;
+	right: 35px;
+	font-size: 50px;
+	font-style: normal;
+	color: #fff;
+}
+
+.faculties-list .close:hover, 
+#faculties li:hover, 
+.faculties-list #faculties li a:hover, 
+#faculties span a:hover {
+	cursor: pointer;
+}
+
+.faculties-list #faculties li:hover, 
+.faculties-list #faculties li a:hover, 
+#faculties span a:hover, 
+.faculties-list>span:hover {
+	color: blue;
+}
+
+@media screen and (max-width: 768px) {
+	.wrapper {
+		padding: 0 15px;
+		background: #508ffa;
+	}
+	.home-page {
+		background: #508ffa;
+		padding: 69px 15px;
+	}
+	h1 {
+		font-size: 44px;
+	}
+	form {
+		padding: 0 15px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	header button span {
+		margin-top: 7px;
+		width: 40px;
+	}
+	.home-page {
+		padding: 69px 15px;
+	}
+	h1 {
+		font-size: 28px;
+	}
+	p {
+		font-size: 18px;
+	}
+	.search-field {
+		max-width: 390px;
+		height: 48px;
+	}
+	.search-field input {
+		height: 48px;
+		font-size: 21px;
+	}
+	.search-field button[type=submit] {
+		width: 67px;
+		height: 50px;
+	}
+	.search-field button[type=submit] img {
+		width: 32px;
+		height: 30px;
+	}
+	.search-list {
+		max-width: 390px;
+	}
+	.search-list span {
+		font-size: 21px;
+	}
+	.faculties-list {
+		justify-content: center;
+		padding-top: 35px;
+		width: 95%;
+		height: auto;
+		background: url('../img/background-faculties.png');
+	}
+
+	.faculties-list #faculties {
+		width: 95%;
+		padding-left: 0;
+		padding-bottom: 20px;
+		padding-top: 20px;
+		box-sizing: border-box;
+		height: auto;
+	}
+	.faculties-list #faculties span {
+		text-align: center;
+		font-size: 14px;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		margin-right: 0;
+	}
+	.faculties-list .close {
+		color: red;
+		font-size: 32px;
+	}
+}

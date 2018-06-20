@@ -1,0 +1,469 @@
+@font-face {
+  font-family: 'HelveticaNeue-Medium';
+  src: url('fonts/HelveticaNeue-Medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('fonts/HelveticaNeue.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+	outline: none;
+}
+
+body {
+	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	max-width: 1920px;
+	padding: 0;
+	margin: 0;
+	overflow-x: hidden;
+}
+
+header, section {
+	padding: 71px 0;
+}
+
+h1, h2 {
+	margin: 0;
+	font-family: 'Helvetica Neue Bold', Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 40px;
+	color: #00226c;
+	text-transform: capitalize;
+}
+
+h2 {
+	margin-left: 68px;
+	margin-bottom: 71px;
+}
+
+h3 {
+	margin: 0;
+	font-weight: 300;
+	font-size: 50px;
+	line-height: 42px;
+	color: #ff3d54;
+	text-transform: capitalize;
+}
+
+h4 {
+	margin: 0;
+}
+
+ul {
+	margin: 0;
+	padding-left: 0;
+	font-size: 20px;
+}
+
+ul li {
+	margin-top: 24px;
+	color: #ff3d54;
+}
+
+ul li span {
+	color: #00226c;
+}
+
+.container {
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+header {
+	background: #f4f8fb;
+}
+
+.professor {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 760px;
+	margin: 0 auto;
+}
+
+.avatar {
+	display: inline-block;
+	max-height: 222px;
+	max-width: 222px;
+	border-radius: 50%;
+	background: #fff;
+	overflow: hidden;
+}
+
+.avatar img {
+	width: 100%;
+	height: 100%;
+}
+
+.professor-description {
+	display: inline-block;
+	vertical-align: top;
+	max-width: 472px;
+	width: 100%;
+}
+
+.stars-rating {
+	margin: 34px 0;
+}
+
+.stars-rating label {
+	display: inline-block;
+	font-size: 38px;
+}
+
+.stars-rating span.far{
+	display: inline-block;
+	color: #19191a;
+}
+
+.stars-rating span.fas{
+	display: none;
+	color: #ff8b00;
+}
+
+.stars-rating input[type="radio"] {
+	display: none;
+}
+.stars-rating input[type="radio"]:checked ~ label span.far {
+	display: none;
+}
+.stars-rating input[type="radio"]:checked ~ label span.fas {
+	display: inline-block;
+}
+
+.stars-rating #star1:checked ~ label[for="star1"] ~ label span.far {
+	display: inline-block;
+}
+.stars-rating #star1:checked ~ label[for="star1"] ~ label span.fas {
+	display: none;
+}
+
+.stars-rating #star2:checked ~ label[for="star2"] ~ label span.far {
+	display: inline-block;
+}
+.stars-rating #star2:checked ~ label[for="star2"] ~ label span.fas {
+	display: none;
+}
+
+.stars-rating #star3:checked ~ label[for="star3"] ~ label span.far {
+	display: inline-block;
+}
+.stars-rating #star3:checked ~ label[for="star3"] ~ label span.fas {
+	display: none;
+}
+
+.stars-rating #star4:checked ~ label[for="star4"] ~ label span.far {
+	display: inline-block;
+}
+.stars-rating #star4:checked ~ label[for="star4"] ~ label span.fas {
+	display: none;
+}
+
+#ratepoint {
+	margin: 0 5px 0 15px;
+	font-size: 46px;
+	color: #ff3d54;
+}
+
+#ratecount {
+	font-size: 21px;
+}
+
+.professor-description button {
+	padding: 10px 0;
+	max-width: 322px;
+	width: 100%;
+	height: 54px;
+	font-size: 30px;
+	text-transform: capitalize;
+	color: #fff;
+	background: #ff3d54;
+	border: none;
+	border-radius: 11px;
+}
+
+.professor-description button:hover, label:hover, input[type="submit"]:hover {
+	cursor: pointer;
+}
+
+.rating-rules {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 67px 17px 51px;
+}
+
+.rating-rules-content {
+	display: inline-block;
+	max-width: 460px;
+}
+
+.feedback {
+	background: #f4f8fb;
+}
+
+form {
+	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	margin: 0 auto;
+	max-width: 1005px;
+	width: 100%;
+}
+
+textarea {
+	padding: 12px 21px;
+	box-sizing: border-box;
+	width: 1005px;
+	width: 100%;
+	height: 100px;
+	font-size: 24px;
+	border: none;
+	resize: none;
+}
+
+.feedback-labels {
+	display: inline-block;
+	vertical-align: top;
+	width: 34%;
+	font-size: 24px;
+	color: #00226c;
+}
+
+.feedback-labels p {
+	padding-top: 13px;
+	height: 42px;
+	margin: 16px 0;
+}
+
+.feedback-fields {
+	display: inline-block;
+	width: 65%;
+}
+
+.feedback-fields input[type="text"] {
+	padding-left: 15px;
+	box-sizing: border-box;
+	max-width: 648px;
+	width: 100%;
+	height: 55px;
+	font-size: 24px;
+	border: none;
+}
+
+input[type="submit"] {
+	margin-top: 60px;
+	max-width: 342px;
+	width: 100%;
+	padding: 15px 31px;
+	font-size: 30px;
+	color: #fff;
+	background: #ff3d54;
+	border-radius: 13px;
+	border: none;
+}
+
+.comment {
+	margin: 32px 0;
+	width: 100%;
+	padding: 38px 135px 38px 61px;
+	box-sizing: border-box;
+	color: #00226c;
+	background: #f4f8fb;
+}
+
+.comment-classgrade, .comment-text {
+	display: inline-block;
+}
+
+.comment-classgrade {
+	padding: 0;
+	box-sizing: border-box;
+	vertical-align: top;
+	width: 22%;
+	font-size: 24px;
+	border-right: 1px solid #00226c;
+}
+
+.comment-classgrade span {
+	line-height: 34px;
+}
+
+.comment-classgrade h4 {
+	margin-bottom: 15px;
+	color: #ff3d54;
+	text-transform: capitalize;
+}
+
+.comment-class {
+	margin-bottom: 25px;
+}
+
+.comment-text {
+	width: 77%;
+	vertical-align: top;
+	padding: 0 30px;
+	box-sizing: border-box;
+	font-size: 20px;
+}
+
+.comment-text h4 {
+	margin-bottom: 50px;
+	color: #ff3d54;
+	text-transform: uppercase;
+}
+
+footer {
+	background: #f4f8fb;
+}
+
+.footer-block {
+	padding: 17px 0 21px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 20px;
+	color: #00226c;
+}
+
+.copyright {
+	max-width: 457px;
+	width: 100%;
+}
+
+.year {
+	max-width: 50px;
+	width: 100%;
+}
+
+@media screen and (max-width: 1099px) {
+	.rating-rules-content {
+		max-width: 400px;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.rating-rules-content {
+		max-width: 325px;
+	}
+	.comment {
+		margin: 32px 0;
+    width: 100%;
+    padding: 15px 30px;
+	}
+	.comment-classgrade {
+    padding: 10px 5px 10px 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+	}
+	.comment-text {
+    padding: 20px 0 20px 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+	.professor {
+		max-width: 600px;
+		padding-left: 15px;
+		justify-content: space-between;
+	}
+	.avatar {
+		max-width: 200px;
+		max-height: 200px;
+	}
+	.professor-description {
+		max-width: 350px;
+	}
+	.rating-rules {
+		flex-direction: column;
+		padding: 0;
+	}
+	h2 {
+		margin-left: 0;
+		margin-bottom: 25px;
+		font-size: 28px;
+		text-align: center;
+	}
+	h3 {
+		font-size: 38px;
+	}
+	.rating-rules-content {
+		max-width: 1005px;
+		width: 100%;
+		padding: 0 35px 15px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	header, section {
+		padding: 45px 0;
+	}
+	.avatar {
+		max-width: 202px;
+		max-height: 202px;
+	}
+	.professor {
+		flex-direction: column;
+	}
+	.professor-description {
+		text-align: center;
+	}
+	.professor-description button {
+		font-size: 27px;
+	}
+	.stars-rating {
+		justify-content: center;
+	}
+	h1 {
+		margin-top: 15px;
+		font-size: 31px;
+	}
+	.stars-rating {
+		display: flex;
+		align-items: center;
+		margin: 14px 0
+	}
+	.stars-rating label {
+		font-size: 24px;
+	}
+	#ratepoint {
+		font-size: 35px;
+	}
+	#ratecount {
+		display: flex;
+		align-self: flex-end;
+	}
+	.professor-description button {
+		width: 85%;
+	}
+	h3 {
+		margin-left: -35px;
+		font-size: 35px;
+		text-align: center;
+	}
+	textarea {
+		height: 193px;
+	}
+	.feedback-fields {
+		text-align: center;
+	}
+	input[type="submit"] {
+		text-align: center;
+		padding: 15px 0;
+		font-size: 27px;
+		width: 85%;
+	}
+	.footer-block {
+		flex-direction: column;
+		padding: 0 10px 18px;
+		box-sizing: border-box;
+		font-size: 16px;
+	}
+	.copyright, .year {
+		margin: 0 auto;
+		text-align: center;
+	}
+}}
