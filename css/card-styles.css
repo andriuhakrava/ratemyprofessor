@@ -28,18 +28,14 @@ header, section {
 	padding: 71px 0;
 }
 
-h1, h2 {
-	margin: 0;
+ h2 {
+	margin-left: 68px;
+	margin-bottom: 71px;
 	font-family: 'Helvetica Neue Bold', Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 40px;
 	color: #00226c;
 	text-transform: capitalize;
-}
-
-h2 {
-	margin-left: 68px;
-	margin-bottom: 71px;
 }
 
 h3 {
@@ -106,6 +102,14 @@ header {
 	vertical-align: top;
 	max-width: 472px;
 	width: 100%;
+}
+
+#profname {
+	font-family: 'Helvetica Neue Bold', Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 40px;
+	color: #00226c;
+	padding-right: 15px;
 }
 
 .stars-rating {
@@ -175,6 +179,23 @@ header {
 	font-size: 21px;
 }
 
+.professor {
+	position: relative;
+}
+
+.home-page {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding-right: 10px;
+}
+
+.home-page a {
+	display: inline-block;
+	font-size: 48px;
+	color: #ffc106;
+}
+
 .professor-description button {
 	padding: 10px 0;
 	max-width: 322px;
@@ -218,7 +239,7 @@ textarea {
 	padding: 12px 21px;
 	box-sizing: border-box;
 	width: 1005px;
-	width: 100%;
+	width: 97.5%;
 	height: 100px;
 	font-size: 24px;
 	border: none;
@@ -241,42 +262,43 @@ textarea {
 
 .feedback-fields {
 	display: inline-block;
-	width: 65%;
+	width: 63%;
 }
 
 .feedback-fields input[type="text"] {
 	padding-left: 15px;
 	box-sizing: border-box;
-	max-width: 648px;
 	width: 100%;
 	height: 55px;
 	font-size: 24px;
 	border: none;
 }
 
-input[type="submit"] {
+.feedback-button {
+	text-align: center;
+}
+
+.feedback-button button {
 	margin-top: 60px;
 	max-width: 342px;
 	width: 100%;
-	padding: 15px 31px;
+	padding: 15px 0;
 	font-size: 30px;
 	color: #fff;
 	background: #ff3d54;
 	border-radius: 13px;
 	border: none;
+	cursor: pointer;
 }
 
 .comment {
+	display: flex;
 	margin: 32px 0;
 	width: 100%;
-	padding: 38px 135px 38px 61px;
+	padding: 38px 135px 38px 44px;
 	box-sizing: border-box;
 	color: #00226c;
 	background: #f4f8fb;
-}
-
-.comment-classgrade, .comment-text {
-	display: inline-block;
 }
 
 .comment-classgrade {
@@ -316,6 +338,46 @@ input[type="submit"] {
 	text-transform: uppercase;
 }
 
+#comment-success {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.comment-modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	margin: 90px auto;
+	padding: 55px 0;
+	box-sizing: border-box;
+	max-width: 648px;
+	color: #fff;
+	font-size: 23px;
+	font-weight: bold;
+	border-radius: 45px;
+	background: #74E868;
+}
+
+.comment-exit {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+
+.comment-exit .close {
+	color: #188A00;
+	font-size: 35px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
 footer {
 	background: #f4f8fb;
 }
@@ -338,9 +400,24 @@ footer {
 	width: 100%;
 }
 
+@media screen and (max-width: 1180px) {
+	.feedback {
+		padding: 60px 15px;
+	}
+	#commentslist {
+		padding: 0 15px;
+	}
+}
+
 @media screen and (max-width: 1099px) {
 	.rating-rules-content {
 		max-width: 400px;
+	}
+	.comment-classgrade {
+		width: 30%;
+	}
+	footer {
+		padding: 0 15px;
 	}
 }
 
@@ -348,23 +425,33 @@ footer {
 	.rating-rules-content {
 		max-width: 325px;
 	}
+	.feedback {
+		padding: 40px 15px;
+	}
 	.comment {
 		margin: 32px 0;
     width: 100%;
     padding: 15px 30px;
 	}
 	.comment-classgrade {
-    padding: 10px 5px 10px 20px;
+		width: 35%;
+    padding: 20px;
     box-sizing: border-box;
     font-size: 20px;
 	}
 	.comment-text {
-    padding: 20px 0 20px 20px;
+    padding: 20px 8px 20px 20px;
     box-sizing: border-box;
     font-size: 20px;
+	}
 }
 
 @media screen and (max-width: 768px) {
+	.home-page {
+		position: absolute;
+		top: -60px;
+		right: 50%;
+	}
 	.professor {
 		max-width: 600px;
 		padding-left: 15px;
@@ -384,6 +471,7 @@ footer {
 	h2 {
 		margin-left: 0;
 		margin-bottom: 25px;
+		padding: 0 10px;
 		font-size: 28px;
 		text-align: center;
 	}
@@ -391,9 +479,30 @@ footer {
 		font-size: 38px;
 	}
 	.rating-rules-content {
-		max-width: 1005px;
-		width: 100%;
+		max-width: 650px;
+		width: 95%;
 		padding: 0 35px 15px;
+	}
+	textarea {
+		height: 200px;
+	}
+	.feedback {
+		padding: 25px 15px 40px;
+	}
+	.feedback-labels {
+		font-size: 20px;
+	}
+	.feedback-fields input[type="text"] {
+		height: 55px;
+		font-size: 20px;
+	}
+	.feedback-button button {
+		max-width: 322px;
+		width: 100%;
+		padding: 15px;
+	}
+	.comment {
+		padding: 0;
 	}
 }
 
@@ -401,14 +510,22 @@ footer {
 	header, section {
 		padding: 45px 0;
 	}
+	.home-page {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding-right: 10px;
+	}
 	.avatar {
 		max-width: 202px;
 		max-height: 202px;
 	}
 	.professor {
 		flex-direction: column;
+		padding-left: 0;
 	}
 	.professor-description {
+		padding-top: 15px;
 		text-align: center;
 	}
 	.professor-description button {
@@ -417,7 +534,7 @@ footer {
 	.stars-rating {
 		justify-content: center;
 	}
-	h1 {
+	#profname {
 		margin-top: 15px;
 		font-size: 31px;
 	}
@@ -439,6 +556,11 @@ footer {
 	.professor-description button {
 		width: 85%;
 	}
+	.rating-rules-content {
+		box-sizing: border-box;
+		width: 100%;
+		padding: 0 25px 15px 35px;
+	}
 	h3 {
 		margin-left: -35px;
 		font-size: 35px;
@@ -446,19 +568,67 @@ footer {
 	}
 	textarea {
 		height: 193px;
+		width: 100%;
+	}
+	.feedback-labels {
+		font-size: 19px;
 	}
 	.feedback-fields {
-		text-align: center;
+		width: 64%;
 	}
-	input[type="submit"] {
+	.feedback-fields p {
+		margin: 16px 0 30px;
+	}
+	.feedback-fields input[type="text"] {
+		height: 45px;
+		font-size: 16px;
+	}
+ .feedback-button button {
 		text-align: center;
 		padding: 15px 0;
-		font-size: 27px;
-		width: 85%;
+		font-size: 23px;
+		max-width: 290px;
+		width: 100%;
+		margin-top: 20px;
+	}
+	.comment {
+		flex-direction: column;
+		padding: 15px 20px;
+		margin: 25px 0 0;
+	}
+	.comment-classgrade {
+		display: flex;
+		justify-content: space-around;
+		padding: 0;
+		width: 100%;
+		border-right: none;
+		border-bottom: 1px solid #00226c;
+	}
+	.comment-class, .comment-grade {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 0 5px;
+		margin-bottom: 15px;
+	}
+	.comment-class span {
+		text-align: center;
+	}
+	.comment-text {
+		width: 100%;
+		padding: 15px 0 0;
+	}
+	.comment-text h4 {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.comment-text p {
+		margin: 0;
 	}
 	.footer-block {
 		flex-direction: column;
-		padding: 0 10px 18px;
+		padding: 18px 10px;
 		box-sizing: border-box;
 		font-size: 16px;
 	}
@@ -466,4 +636,31 @@ footer {
 		margin: 0 auto;
 		text-align: center;
 	}
-}}
+}
+
+@media (max-width: 450px) {
+	.feedback-labels, .feedback-fields {
+		width: 100%;
+		max-width: 450px;
+		text-align: center;
+	}
+	.feedback-labels p {
+		height: auto;
+		padding-top: 7px;
+		margin: 5px 0 10px;
+	}
+	.feedback-fields input[type="text"] {
+		height: 35px;
+		font-size: 16px;
+	}
+	.feedback-fields p {
+		height: auto;
+		margin: 5px 0 15px;
+	}
+	.comment-modal {
+		text-align: center;
+	}
+	.comment-modal p {
+		padding: 0 10px;
+	}
+}

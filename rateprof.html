@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>RateMyProf</title>
+	<title>RateMyProfessor</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/card-styles.css">
 </head>
@@ -11,11 +11,14 @@
 	<header>
 		<div class="container">
 			<div class="professor">
+				<div class="home-page">
+					<a href="index.html"><span class="fas fa-home"></span></a>
+				</div>
 				<div class="avatar">
-					<img src="" alt="avatar" id="photo">
+					<img src="img/avatar.png" alt="avatar" id="photo">
 				</div>
 				<div class="professor-description">
-					<h1 id="profname"></h1>
+					<span id="profname"></span>
 					<div class="stars-rating">
 						<input type="radio" name="stars" id="star1" value="1">
 						<input type="radio" name="stars" id="star2" value="2">
@@ -35,7 +38,7 @@
 			</div>
 		</div>
 	</header>
-	<section>
+	<section class="rules">
 		<div class="container">
 			<h2>rating do's and don'ts.</h2>
 				<div class="rating-rules">
@@ -51,10 +54,11 @@
 					<div class="rating-rules-content">
 						<h3>don't</h3>
 						<ul>
-							<li><span>Be honest and objective in your assessment of a professor.</span></li>
-							<li><span>Limit your comments to a professor's professional abilities.</span></li>
-							<li><span>Proof your comments before submitting.</span></li>
-							<li><span>Submit helpful comments that mention a professor's ability to teach and/or communicate effectively, course load, type of course work and course topics.</span></li>
+							<li>
+								<span>Include any piece of information that may identify you or other students.</span>
+							</li>
+							<li><span>Include any piece of identifiable information for a professor that would allow someone to contact the professor outside of his/her school. This also includes remarks about the professor's family and/or personal life.</span></li>
+							<li><span>Post a rating if you have not taken a class with the professor.</span></li>
 						</ul>
 					</div>
 				</div>
@@ -63,20 +67,28 @@
 	<section class="feedback">
 		<div class="container">
 			<h2>your feedback.</h2>
-			<form action="" method="POST" id="formComment" autocomplete="off">
-				<textarea name="" id="comment" placeholder="Start typing your comment..."></textarea>
+				<textarea id="comment" placeholder="Start typing your comment..."></textarea>
 				<div class="feedback-labels">
 					<p><label for="nickname">Enter your nickname.</label></p>
 					<p><label for="classfield">What class did you take?</label></p>
 					<p><label for="grade">What grade did you receive?</label></p>
 				</div>
 				<div class="feedback-fields">
-					<p><input type="text" id="nickname"></p>
-					<p><input type="text" id="classfield"></p>
-					<p><input type="text" id="grade"></p>
-					<input type="submit" value="Submit My Comment" id="sub" onclick="addComment()">
+					<p><input type="text" id="nickname" autocomplete="off"></p>
+					<p><input type="text" id="classfield" autocomplete="off"></p>
+					<p><input type="text" id="grade" autocomplete="off"></p>
+				</div>	
+				<div class="feedback-button">
+					<button id="sub" onclick="addComment()">Submit My Comment</button>
 				</div>
-			</form>
+				<div id="comment-success">
+					<div class="comment-modal">
+						<div class="comment-exit">
+							<span class="close" id="commentclose">&times;</span>
+						</div>
+						<p>We added your feedback. Thanks!</p>
+					</div>
+				</div>
 		</div>
 	</section>
 	<section>
@@ -92,126 +104,6 @@
 		</div>
 	</footer>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script>
-		window.onload = function() {
-			if (get('gender') == 'm'){
-				document.getElementById('photo').setAttribute('src', 'img/avatar-male.png');
-			} else if (get('gender') == 'w'){
-				document.getElementById('photo').setAttribute('src', 'img/avatar-female.png');
-			}
-			getProfInfo();
-			getAllComments();
-		}
-		function get(name){
-		   if(name = (new RegExp('[?&]' + encodeURIComponent(name) + '=([^&]*)')).exec(location.search))
-		      return decodeURIComponent(name[1]);
-		}
-
-	function addComment() {
-		let comment = document.getElementById('comment').value,
-				nickname = document.getElementById('nickname').value,
-				classfield = document.getElementById('classfield').value,
-				grade = document.getElementById('grade').value;
-		
-		let id = get('id');
-					$.ajax({ 
-						dataType: "json",
-					  type: "GET",
-					  url: "http://univercity.milim.online/insert_comment.php?id=" + id + "&text=" 
-					  + comment + "&from=" + nickname + "&class=" + classfield + "&grade=" + grade,
-					  success: function(prf){
-					    console.log("Відповідь сервера: " + prf);
-					},
-						error: function (jqXHR, exception);
-					 }
-				});	
-
-		getAllComments();
-	}
-
-	function getAllComments() {
-		
-		let id = get('id');
-		$.ajax({ 
-						dataType: "json",
-					  type: "GET",
-					  url: "http://univercity.milim.online/get_comments_by_id.php?id=" + id,
-					  success: function(prf){
-					    console.log("Відповідь сервера: " + prf);
-					    let commentsList = document.getElementById('commentslist');
-					    let commentsArray = '';
-					    
-					    for (i=0; i<prf.length; i++) {
-					    	let com = prf[i];
-					    	let commentHTML = "<div class=\"comment\"><div class=\"comment-classgrade\"><div class=\"comment-class\"><h4>class:</h4><span>" + com['class'] + "</span></div><div><h4>grade:</h4><span>" + com['grade'] + "</span></div></div><div class=\"comment-text\"><h4>" 
-					    		+ com['from_user'] + "</h4><p>" + com['content_text'] + "</p></div></div>";
-					    	commentsArray += commentHTML;
-					    }
-							
-							commentsList.innerHTML = commentsArray;
-					},
-						error: function (jqXHR, exception) {
-					  
-					 }
-				});	
-	}
-
-let rate = document.getElementById('ratebutt');
-	
-	rate.onclick = function () {
-		
-		let stars = document.getElementsByTagName('input');
-		let value = '';
-		let rateResult = document.getElementById('ratepoint');
-
-		for(i=0; i<stars.length; i++) {
-			if (stars[i].type === 'radio' && stars[i].checked) {
-				value = stars[i].value;
-				sendMark(value);
-			}
-		} 
-
-		function sendMark (value) {
-			let id = get('id');
-			$.ajax({ 
-						dataType: "json",
-					  type: "GET",
-						url: "http://univercity.milim.online/add_mark.php?id_prep=" + id + "&point=" + value,
-					  success: function(prf){
-					    console.log("Відповідь сервера: " + prf);
-					    getProfInfo();
-					},
-						error: function (jqXHR, exception) {
-					  
-					 }
-				});
-		}
-	}
-
-function getProfInfo () {
-	let id = get('id');
-			$.ajax({ 
-						dataType: "json",
-					  type: "GET",
-					  url: "http://univercity.milim.online/get_one_prep.php?id=" + id,
-					  success: function(prf){
-					  	document.getElementById('profname').innerHTML = prf['name'];
-					  	
-					  	var rate = prf['rate'] + '';
-					  	if (rate.length > 1) {
-					  		rate = rate.substring(0, 3);
-					  	}
-
-					  	document.getElementById('ratepoint').innerText = rate;
-					  	document.getElementById('ratecount').innerHTML = '(' + prf['rates_count'] + ')';
-					    console.log("Відповідь сервера: " + prf);
-					},
-						error: function (jqXHR, exception) {
-					    
-					 }
-				});	
-}
-
-	</script>
+	<script src="js/prof.js"></script>
 </body>
 </html>

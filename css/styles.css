@@ -23,6 +23,10 @@ body {
 	overflow-x: hidden;
 }
 
+body.modal-open {
+	overflow-y: hidden;
+}
+
 .wrapper {
 	max-width: 1140px;
 	margin: 0 auto;
@@ -31,15 +35,16 @@ body {
 header {
 	display: flex;
 	justify-content: flex-end;
+	width: 100%;
 	padding: 18px 0 0;
 }
 
 .home-page {
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 	padding-top: 55px;
 	box-sizing: border-box;
-	background: url(../img/Background.png);
+	background: url(../img/background-main.png) no-repeat;
 	background-size: cover;
 }
 
@@ -98,17 +103,13 @@ img {
 	width: 100%;
 }
 
-form {
-	margin-top: 50px;
-	text-align: center;
-}
-
 .search-field {
+	margin: 50px auto 0;
+	text-align: center;
 	position: relative;
 	max-width: 550px;
 	width: 100%;
 	height: 75px;
-	margin: 0 auto;
 }
 
 .search-field input {
@@ -123,31 +124,23 @@ form {
 	background: #d9d9d9;
 }
 
-.search-field button[type=submit] {
+.search-field img {
 	position: absolute;
-	top: 0;
-	right: 0;
-	width: 92px;
-	height: 75px;
-	background: #ffc106;
-	border-radius: 25px;
-}
-
-.search-field button[type=submit] img {
-	display: inline-block;
-	margin: 0 auto;
+	top: 12px;
+	right: 12px;
 	width: 53px;
 	height: 51px;
 }
 
 .search-list {
 	display: none;
-	max-width: 590px;
+	max-width: 550px;
 	padding: 15px 0;
 	width: 100%;
 	margin: 0 auto;
 	background: #d9d9d9;
 	border-radius: 25px;
+	text-align: center;
 }
 
 .search-list span {
@@ -175,34 +168,36 @@ form {
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.8);
+	overflow-y: auto;
 }
 
 .faculties-list {
 	display: flex;
 	position: relative;
 	margin: 1% auto;
-	padding: 55px 0 15px;
+	padding: 55px 0 250px;
 	box-sizing: border-box;
 	max-width: 648px;
-	max-height: 668px;
 	border-radius: 45px;
-	background: url('../img/girl.png');
+	background: url('../img/girl.png') center bottom;
 	background-size: cover;
 }
 
 .faculties-list #faculties {
 	display: flex;
-	flex-direction: column;
 	flex-wrap: wrap;
 	margin: 0;
-	padding-left: 47px;
-	height: 620px;
+	padding-left: 30px;
+	height: auto;
 	list-style: none;
 }
 
 .faculties-list #faculties span {
 	display: inline-block;
-	margin: 8px 120px 8px 0;
+	margin: 8px 0;
+	padding: 0 10px;
+	box-sizing: border-box;
+	width: 50%;
 	font-size: 23px;
 	font-weight: bold;
 	color: #fff;
@@ -211,6 +206,10 @@ form {
 .faculties-list #faculties span:hover {
 	cursor: pointer;
 	color: blue;
+}
+
+.faculties-list #faculties.faculties-new span {
+	width: 100%;
 }
 
 #faculties span a {
@@ -254,9 +253,19 @@ form {
 	}
 	h1 {
 		font-size: 44px;
+		color: #fff;
+	}
+	p {
+		color: #fff;
 	}
 	form {
 		padding: 0 15px;
+	}
+}
+
+@media screen and (max-width: 680px) {
+	.faculties-list, .faculties-list #faculties {
+		width: 95%;
 	}
 }
 
@@ -282,13 +291,12 @@ form {
 		height: 48px;
 		font-size: 21px;
 	}
-	.search-field button[type=submit] {
-		width: 67px;
-		height: 50px;
-	}
-	.search-field button[type=submit] img {
+	.search-field img {
+		position: absolute;
+		top: 10px;
+		right: 12px;
 		width: 32px;
-		height: 30px;
+		height: 32px;
 	}
 	.search-list {
 		max-width: 390px;
@@ -299,28 +307,27 @@ form {
 	.faculties-list {
 		justify-content: center;
 		padding-top: 35px;
-		width: 95%;
 		height: auto;
-		background: url('../img/background-faculties.png');
+		background: url('../img/girl.png') top center;
 	}
-
 	.faculties-list #faculties {
-		width: 95%;
-		padding-left: 0;
-		padding-bottom: 20px;
-		padding-top: 20px;
+		padding: 25px 0 20px;
 		box-sizing: border-box;
 		height: auto;
 	}
 	.faculties-list #faculties span {
 		text-align: center;
-		font-size: 14px;
-		margin-top: 5px;
-		margin-bottom: 5px;
-		margin-right: 0;
+		font-size: 20px;
+		margin: 9px 0;
 	}
 	.faculties-list .close {
 		color: red;
 		font-size: 32px;
+	}
+}
+
+@media screen and (max-width: 420px) {
+	.faculties-list #faculties span {
+		font-size: 18px;
 	}
 }
