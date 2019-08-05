@@ -1,13 +1,13 @@
 let openMenuBtn = document.querySelector('#page-menu'),
-		modal = document.querySelector('.modal'),
-		modalContent = document.querySelector('.modal-content'),
-		closeMenuBtn = document.querySelector('.close'),
-		facultiesList = document.querySelector('.faculties-list'),
-		searchField = document.querySelector('#search'),
-		searchResults = document.querySelector('.search-results'),
-		bgUrlFaculties = 'url(img/bg-girl.png)',
-		bgUrlProfessors = 'url(img/bg-faculties.png)',
-		scrollWidth = ScrollWidth();
+	modal = document.querySelector('.modal'),
+	modalContent = document.querySelector('.modal-content'),
+	closeMenuBtn = document.querySelector('.close'),
+	facultiesList = document.querySelector('.faculties-list'),
+	searchField = document.querySelector('#search'),
+	searchResults = document.querySelector('.search-results'),
+	bgUrlFaculties = 'url(img/bg-girl.png)',
+	bgUrlProfessors = 'url(img/bg-faculties.png)',
+	scrollWidth = ScrollWidth();
 
 const FACULTIESLIST_URL = 'https://univercity.milimapp.online/get_facult.php';
 const PROFESSORSLIST_URL = 'https://univercity.milimapp.online/get_prep.php?id=';
@@ -53,7 +53,7 @@ function showProfessorsList(prf) {
 } 
 
 function searchProfessor() {
-	let	queryProfessor = searchField.value;
+	let queryProfessor = searchField.value;
 
  	searchField.onclick = function() {
 	 	searchResults.style.display = 'none';
