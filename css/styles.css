@@ -44,7 +44,7 @@ header {
 	height: 100vh;
 	padding-top: 55px;
 	box-sizing: border-box;
-	background: url(../img/background-main.png) no-repeat;
+	background: url(../img/bg-main.png) no-repeat;
 	background-size: cover;
 }
 
@@ -132,7 +132,7 @@ img {
 	height: 51px;
 }
 
-.search-list {
+.search-results {
 	display: none;
 	max-width: 550px;
 	padding: 15px 0;
@@ -143,23 +143,23 @@ img {
 	text-align: center;
 }
 
-.search-list span {
+.search-results span {
 	display: block;
 	margin: 7px 0;
 	font-size: 23px;
 	color: #000;
 }
 
-.search-list span:hover {
+.search-results span:hover {
 	background: #ffc106;
 }
 
-.search-list span a {
+.search-results span a {
 	display: block;
 	line-height: 36px;
 }
 
-#menu-faculties {
+.modal {
 	display: none;
 	position: fixed;
 	left: 0;
@@ -171,7 +171,7 @@ img {
 	overflow-y: auto;
 }
 
-.faculties-list {
+.modal-content {
 	display: flex;
 	position: relative;
 	margin: 1% auto;
@@ -179,11 +179,10 @@ img {
 	box-sizing: border-box;
 	max-width: 648px;
 	border-radius: 45px;
-	background: url('../img/girl.png') center bottom;
 	background-size: cover;
 }
 
-.faculties-list #faculties {
+.modal-content .faculties-list {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 0;
@@ -192,7 +191,7 @@ img {
 	list-style: none;
 }
 
-.faculties-list #faculties span {
+.modal-content .faculties-list span {
 	display: inline-block;
 	margin: 8px 0;
 	padding: 0 10px;
@@ -203,42 +202,43 @@ img {
 	color: #fff;
 }
 
-.faculties-list #faculties span:hover {
+.modal-content .faculties-list span:hover {
 	cursor: pointer;
 	color: blue;
 }
 
-.faculties-list #faculties.faculties-new span {
+.modal-content .faculties-list.faculties-new span {
 	width: 100%;
 }
 
-#faculties span a {
+.faculties-list span a {
 	display: inline-block;
 	max-width: 290px;
 	font-weight: bold;
 	color: #fff;
 }
 
-.faculties-list .close {
+.modal-content .close {
 	position: absolute;
 	top: 15px;
 	right: 35px;
 	font-size: 50px;
+	font-weight: bold;
 	font-style: normal;
 	color: #fff;
 }
 
-.faculties-list .close:hover, 
-#faculties li:hover, 
-.faculties-list #faculties li a:hover, 
-#faculties span a:hover {
+.modal-content .close:hover, 
+.faculties-list li:hover, 
+.modal-content .faculties-list li a:hover, 
+.faculties-list span a:hover {
 	cursor: pointer;
 }
 
-.faculties-list #faculties li:hover, 
-.faculties-list #faculties li a:hover, 
-#faculties span a:hover, 
-.faculties-list>span:hover {
+.modal-content .faculties-list li:hover, 
+.modal-content .faculties-list li a:hover, 
+.faculties-list span a:hover, 
+.modal-content>span:hover {
 	color: blue;
 }
 
@@ -264,7 +264,7 @@ img {
 }
 
 @media screen and (max-width: 680px) {
-	.faculties-list, .faculties-list #faculties {
+	.modal-content, .modal-content .faculties-list {
 		width: 95%;
 	}
 }
@@ -304,30 +304,28 @@ img {
 	.search-list span {
 		font-size: 21px;
 	}
-	.faculties-list {
+	.modal-content {
 		justify-content: center;
 		padding-top: 35px;
 		height: auto;
-		background: url('../img/girl.png') top center;
 	}
-	.faculties-list #faculties {
+	.modal-content .faculties-list {
 		padding: 25px 0 20px;
 		box-sizing: border-box;
 		height: auto;
 	}
-	.faculties-list #faculties span {
+	.modal-content .faculties-list span {
 		text-align: center;
 		font-size: 20px;
 		margin: 9px 0;
 	}
-	.faculties-list .close {
-		color: red;
+	.modal-content .close {
 		font-size: 32px;
 	}
 }
 
 @media screen and (max-width: 420px) {
-	.faculties-list #faculties span {
+	.modal-content .faculties-list span {
 		font-size: 18px;
 	}
 }

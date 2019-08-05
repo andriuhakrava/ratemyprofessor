@@ -196,7 +196,7 @@ header {
 	color: #ffc106;
 }
 
-.professor-description button {
+.professor-description .btn-rate {
 	padding: 10px 0;
 	max-width: 322px;
 	width: 100%;
@@ -209,7 +209,7 @@ header {
 	border-radius: 11px;
 }
 
-.professor-description button:hover, label:hover, input[type="submit"]:hover {
+.professor-description .btn-rate:hover, label:hover, input[type="submit"]:hover {
 	cursor: pointer;
 }
 
@@ -229,7 +229,7 @@ header {
 }
 
 form {
-	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	font-family: 'Helvetica Neue', Arial, sans-serif;
 	margin: 0 auto;
 	max-width: 1005px;
 	width: 100%;
@@ -338,7 +338,7 @@ textarea {
 	text-transform: uppercase;
 }
 
-#comment-success {
+.modal {
 	display: none;
 	position: fixed;
 	left: 0;
@@ -349,7 +349,7 @@ textarea {
 	background: rgba(0, 0, 0, 0.8);
 }
 
-.comment-modal {
+.modal-content {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -362,17 +362,15 @@ textarea {
 	font-size: 23px;
 	font-weight: bold;
 	border-radius: 45px;
-	background: #74E868;
 }
 
-.comment-exit {
+.modal-exit {
 	position: absolute;
 	top: 15px;
 	right: 15px;
 }
 
-.comment-exit .close {
-	color: #188A00;
+.modal-exit .modal-close {
 	font-size: 35px;
 	font-weight: bold;
 	cursor: pointer;
@@ -528,7 +526,8 @@ footer {
 		padding-top: 15px;
 		text-align: center;
 	}
-	.professor-description button {
+	.professor-description .btn-rate {
+		width: 85%;
 		font-size: 27px;
 	}
 	.stars-rating {
@@ -552,9 +551,6 @@ footer {
 	#ratecount {
 		display: flex;
 		align-self: flex-end;
-	}
-	.professor-description button {
-		width: 85%;
 	}
 	.rating-rules-content {
 		box-sizing: border-box;
@@ -657,10 +653,8 @@ footer {
 		height: auto;
 		margin: 5px 0 15px;
 	}
-	.comment-modal {
+	.modal-content-text {
 		text-align: center;
-	}
-	.comment-modal p {
 		padding: 0 10px;
 	}
 }

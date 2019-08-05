@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>RateMyProfessor</title>
+	<title>Proffesor Profile</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/card-styles.css">
 </head>
@@ -33,7 +33,7 @@
 						<span id="ratepoint"></span>
 						<span id="ratecount"></span>
 					</div>
-					<button id="ratebutt">rate the professor</button>
+					<button class="btn-rate">rate the professor</button>
 				</div>
 			</div>
 		</div>
@@ -67,7 +67,8 @@
 	<section class="feedback">
 		<div class="container">
 			<h2>your feedback.</h2>
-				<textarea id="comment" placeholder="Start typing your comment..."></textarea>
+			<form id="comment-form">
+				<textarea id="comment-text" placeholder="Start typing your comment..."></textarea>
 				<div class="feedback-labels">
 					<p><label for="nickname">Enter your nickname.</label></p>
 					<p><label for="classfield">What class did you take?</label></p>
@@ -79,16 +80,17 @@
 					<p><input type="text" id="grade" autocomplete="off"></p>
 				</div>	
 				<div class="feedback-button">
-					<button id="sub" onclick="addComment()">Submit My Comment</button>
+					<button type="submit">Submit My Comment</button>
 				</div>
-				<div id="comment-success">
-					<div class="comment-modal">
-						<div class="comment-exit">
-							<span class="close" id="commentclose">&times;</span>
+				<div class="modal">
+					<div class="modal-content">
+						<div class="modal-exit">
+							<span class="modal-close">&times;</span>
 						</div>
-						<p>We added your feedback. Thanks!</p>
+						<p class="modal-content-text"></p>
 					</div>
 				</div>
+			</form>
 		</div>
 	</section>
 	<section>

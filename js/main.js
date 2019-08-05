@@ -1,146 +1,146 @@
-var pageMenu = document.getElementById('page-menu'),
-		faculties = document.getElementById('menu-faculties'),
-		facultiesItem = document.getElementById('facult-item'),
-		exit = document.getElementById('exit'),
-		facultiesList = document.getElementById('faculties'),
+let openMenuBtn = document.querySelector('#page-menu'),
+		modal = document.querySelector('.modal'),
+		modalContent = document.querySelector('.modal-content'),
+		closeMenuBtn = document.querySelector('.close'),
+		facultiesList = document.querySelector('.faculties-list'),
+		searchField = document.querySelector('#search'),
+		searchResults = document.querySelector('.search-results'),
+		bgUrlFaculties = 'url(img/bg-girl.png)',
+		bgUrlProfessors = 'url(img/bg-faculties.png)',
 		scrollWidth = ScrollWidth();
 
-		window.addEventListener('resize', function () {
-			scrollWidth = ScrollWidth();
-		});
+const FACULTIESLIST_URL = 'http://univercity.milimapp.online/get_facult.php';
+const PROFESSORSLIST_URL = 'http://univercity.milimapp.online/get_prep.php?id=';
+const PROFESSOR_URL = 'http://univercity.milimapp.online/search_prep.php?q=';
 
-		pageMenu.onclick = function() {
-			faculties.style.display = 'block';
-			facultiesList.classList.add('faculties-new');
-			document.body.style.paddingRight = scrollWidth + 'px';
-			document.body.classList.add('modal-open');
-			getData();
-		}
+searchField.addEventListener('keyup', searchProfessor);
 
-		exit.onclick = function() {
-			faculties.style.display = 'none';
-			document.body.style.paddingRight = '0';
-			document.body.classList.remove('modal-open');
-		}
+window.addEventListener('resize', function () {
+	scrollWidth = ScrollWidth();
+});
+
+openMenuBtn.onclick = function() {
+	modal.style.display = 'block';
+	facultiesList.classList.add('faculties-new');
+	document.body.style.paddingRight = scrollWidth + 'px';
+	document.body.classList.add('modal-open');
+	getFacultiesList();
+}
+
+closeMenuBtn.onclick = function() {
+	modal.style.display = 'none';
+	document.body.style.paddingRight = '0';
+	document.body.classList.remove('modal-open');
+}
 		
-		function getData() {
-			$.ajax({
-					dataType: "json",
-				  type: "GET",
-				  url: "http://univercity.milim.online/get_facult.php",
-				  success: function(msg){
-				  	showResult(msg);
-				  },
-				  error: function (jqXHR, exception) {
-				  	let msg = getErrorMessage(jqXHR, exception);
-						    alert(msg);
-				  }
-			});
-		}
+function getFacultiesList() {
+	getData('GET', FACULTIESLIST_URL, showFacultiesList, getErrorMessage);
+}
 
-		function getErrorMessage(jqXHR, exception) {
-			if (jqXHR.status === 0) { return 'Not connect.\n Verify Network.'; }
-		  if (jqXHR.status == 404) { return 'Requested page not found. [404]'; }
-		  if (jqXHR.status == 500) { return 'Internal Server Error [500].'; }
-		  if (exception === 'parsererror') { return 'Requested JSON parse failed.'; }
-		  if (exception === 'timeout') { return 'Time out error.'; }
-		  if (exception === 'abort') { return 'Ajax request aborted.'; }
-		  return 'Uncaught Error.\n' + jqXHR.responseText;
-		}
+function showFacultiesList(msg) {
+	renderData(msg, bgUrlFaculties, templateFacultiesList, facultiesList);
+}
 
-		function showResult(msg) {
-			var facul = '';
+function getProfessorsList(id) {
+	facultiesList.innerHTML = '';
+	facultiesList.classList.remove('faculties-new');
 
-					exit.style.color = 'white';
-					exit.style.font = "bold 50px arial, serif";
-					exit.style.position = "absolute";
-					exit.style.top = "15px";
-					exit.style.right = "35px";
-					exit.onmouseover = function () {
-						this.style.color = "blue";
-					}
-					exit.onmouseout = function () {
-						this.style.color = "white";
-					}
-				facultiesItem.style.backgroundImage = 'url(img/girl.png)';
-				for(i=0; i < msg.length; i++) {
-					let faculty = msg[i];
-						facultiesList.innerHTML = '';
-						facul += '<span onclick = "getProfessor('+ faculty['id'] +')">' + faculty['name'] + '</span>';
-						facultiesList.innerHTML = facul;
-				}
-		}
+	getData('GET', PROFESSORSLIST_URL + id, showProfessorsList, getErrorMessage);
+}
 
-		function getProfessor(id) {
-			facultiesList.innerHTML = '';
-				$.ajax({
-						dataType: "json",
-					  type: "GET",
-					  url: "http://univercity.milim.online/get_prep.php?id=" + id,
-					  success: function(prf){
-					  	facultiesList.classList.remove('faculties-new');
-					  	showResultProf(prf);
-						},
-						error: function (jqXHR, exception) {
-							let msg = getErrorMessage(jqXHR, exception);
-						    	alert(msg);
-					 	}
-				});
-		}
+function showProfessorsList(prf) {
+	renderData(prf, bgUrlProfessors, templateProfessor, facultiesList);
+} 
 
-		function showResultProf(prf) {
-			let professorsList = '';
+function searchProfessor() {
+	let	queryProfessor = searchField.value;
 
-			for(i=0; i < prf.length; i++) {
-						let professorItem = prf[i];
-						professorsList += '<span><a href="rateprof.html?id='+ professorItem['id'] +'&gender='+ professorItem['gender'] +'">' + professorItem['name'] + '</a></span>';
-						facultiesItem.style.backgroundImage = 'url(img/background-faculties.png)';
-					}
-				facultiesList.innerHTML = professorsList;
-			}
+ 	searchField.onclick = function() {
+	 	searchResults.style.display = 'none';
+	}
 
-		function searchProf() {
-			let searchField = document.getElementById('search'),
-					queryProf = document.getElementById('search').value,
-					searchList = document.getElementById('slist');
-				 	
-				 	searchField.onclick = function() {
-					 	searchList.style.display = 'none';
-					}
-					
-					if (queryProf.length > 0) {
-						$.ajax({
-								dataType: "json",
-							  type: "GET",
-							  url: "http://univercity.milim.online/search_prep.php?q=" + queryProf,
-							  success: function(prf){
-							    searchList.style.display = 'block';
-									let searchListItems = '';
-									
-									for (i=0; i<prf.length; i++) {
-											let professor = prf[i];
-											searchListItems += '<span><a href="rateprof.html?id='+ professor['id'] +'&gender='+ professor['gender'] +'">' + professor['name'] + '</a></span>';
-									}
-									searchList.innerHTML = searchListItems;
-								},
-								error: function (jqXHR, exception) {
-									let msg = getErrorMessage(jqXHR, exception);
-						    	alert(msg);
-				 				} 
-						});
-					} else {
-					searchList.style.display = 'none';
-					}	
-		}
+	if (queryProfessor.length > 0){
+		getData('GET', PROFESSOR_URL + queryProfessor, showProfessor, getErrorMessage);
+	} else {
+		searchResults.style.display = 'none';
+	}
+}
+
+function showProfessor(prf){
+	if (prf.length > 0){
+    searchResults.style.display = 'block';
+
+		renderData(prf, null, templateProfessor, searchResults);
+	}
+  else {
+  	searchResults.style.display = 'none';
+  }
+}
+
+function templateFacultiesList(data){
+	return (`
+		<span onclick = "getProfessorsList('${data['id']}')">
+			${data['name']}
+		</span>
+	`);
+}
+
+function templateProfessor(data){
+	return (`
+		<span>
+			<a href="rateprof.html?id=${data['id']}&gender=${data['gender']}">
+				${data['name']}
+			</a>
+		</span>
+	`);
+}
+
+function renderData(data, backgroundImg = '', templateFn, container){
+	let temporaryData = '';
+
+	modalContent.style.backgroundImage = backgroundImg;
+	
+	data.forEach(item => {
+		temporaryData += templateFn(item);
+	});
+	
+	container.innerHTML = temporaryData;
+}
+
+function getData(type, url, successFn, errorFn){
+	$.ajax({
+	  type,
+	  url,
+	  success: function(msg){
+	  	successFn(msg);
+	  },
+	  error: function (jqXHR, exception) {
+	  	let msg = errorFn(jqXHR, exception);
+			alert(msg);
+	  }
+	});
+}
+
+function getErrorMessage(jqXHR, exception) {
+	if (jqXHR.status === 0) { return 'Not connect.\n Verify Network.'; }
+  if (jqXHR.status == 404) { return 'Requested page not found. [404]'; }
+  if (jqXHR.status == 500) { return 'Internal Server Error [500].'; }
+  if (exception === 'parsererror') { return 'Requested JSON parse failed.'; }
+  if (exception === 'timeout') { return 'Time out error.'; }
+  if (exception === 'abort') { return 'Ajax request aborted.'; }
+  return 'Uncaught Error.\n' + jqXHR.responseText;
+}
 
 function ScrollWidth () {
-	var div = document.createElement('div');
+	let div = document.createElement('div');
 
 	div.style.height = '50px';
 	div.style.visibility = 'hidden';
 
 	document.body.appendChild(div);
-	var scrollWidth = div.clientWidth;
+
+	let scrollWidth = div.clientWidth;
+	
 	div.style.overflowY = 'scroll';
 	scrollWidth -= div.clientWidth;
 	document.body.removeChild(div);
