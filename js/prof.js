@@ -1,9 +1,9 @@
 let id = get('id');
 
-const ADDMARK_URL = `https://univercity.milimapp.online/add_mark.php?id_prep=${id}&point=`;
-const ADDCOMMENT_URL = `https://univercity.milimapp.online/insert_comment.php?id=${id}`;
-const ALLCOMMENTS_URL = `https://univercity.milimapp.online/get_comments_by_id.php?id=${id}`;
-const PROFESSORINFO_URL = `https://univercity.milimapp.online/get_one_prep.php?id=${id}`;
+const ADDMARK_URL = `http://univercity.milimapp.online/add_mark.php?id_prep=${id}&point=`;
+const ADDCOMMENT_URL = `http://univercity.milimapp.online/insert_comment.php?id=${id}`;
+const ALLCOMMENTS_URL = `http://univercity.milimapp.online/get_comments_by_id.php?id=${id}`;
+const PROFESSORINFO_URL = `http://univercity.milimapp.online/get_one_prep.php?id=${id}`;
 
 const btnCloseSuccessColor = '#188A00';
 const btnCloseErrorColor = '#A60000';
