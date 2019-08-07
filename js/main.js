@@ -9,9 +9,9 @@ let openMenuBtn = document.querySelector('#page-menu'),
 	bgUrlProfessors = 'url(img/bg-faculties.png)',
 	scrollWidth = ScrollWidth();
 
-const FACULTIESLIST_URL = 'http://univercity.milimapp.online/get_facult.php';
-const PROFESSORSLIST_URL = 'http://univercity.milimapp.online/get_prep.php?id=';
-const PROFESSOR_URL = 'http://univercity.milimapp.online/search_prep.php?q=';
+const FACULTIESLIST_URL = '//univercity.milimapp.online/get_facult.php';
+const PROFESSORSLIST_URL = '//univercity.milimapp.online/get_prep.php?id=';
+const PROFESSOR_URL = '//univercity.milimapp.online/search_prep.php?q=';
 
 searchField.addEventListener('keyup', searchProfessor);
 
