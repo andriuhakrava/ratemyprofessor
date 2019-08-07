@@ -108,11 +108,10 @@ function renderData(data, backgroundImg = '', templateFn, container){
 	container.innerHTML = temporaryData;
 }
 
-function getData(url, successFn, errorFn){
-	fetch(PROXY_URL + url)
-		.then(response => response.json())
-		.then(result => successFn(result))
-		.catch(err => errorFn(err));
+async function getData(url, successFn, errorFn){
+	const response = await fetch(PROXY_URL + url);
+	const json = await response.json();
+	successFn(json);
 }
 
 function getErrorMessage(err){
