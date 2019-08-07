@@ -58,7 +58,7 @@ function rateProfessor() {
 	} 
 	
 	function sendMark (value) {
-		getData('GET', ADDMARK_URL + value, getProfInfo, getErrorMessage);
+		getData(ADDMARK_URL + value, getProfInfo, getErrorMessage);
 	}
 }
 
@@ -66,7 +66,7 @@ function addComment(event) {
 	event.preventDefault();
 
 	if (commentText.value !== '' && nickname.value !== '' && classfield.value !== '' && grade.value !== '') {
-		getData('GET', ADDCOMMENT_URL + '&text=' + commentText.value + "&from=" + nickname.value + "&class=" + classfield.value + "&grade=" + grade.value, getAllComments, getErrorMessage);
+		getData(ADDCOMMENT_URL + '&text=' + commentText.value + "&from=" + nickname.value + "&class=" + classfield.value + "&grade=" + grade.value, getAllComments, getErrorMessage);
 		showModal('We added your feedback. Thanks!', modalSuccessBgColor, btnCloseSuccessColor);
 		clearForm(commentText, nickname, classfield, grade);
 	} else {
@@ -92,7 +92,7 @@ function closeModal() {
 }
 
 function getAllComments() {
-	getData('GET', ALLCOMMENTS_URL, showComments, getErrorMessage);
+	getData(ALLCOMMENTS_URL, showComments, getErrorMessage);
 }
 
 function showComments(prf){
@@ -131,7 +131,7 @@ function showProfessorInfo(prf){
 }
 
 function getProfInfo () {
-	getData('GET', PROFESSORINFO_URL, showProfessorInfo, getErrorMessage);	
+	getData(PROFESSORINFO_URL, showProfessorInfo, getErrorMessage);
 }
 
 function renderData(data, templateFn, container){
@@ -144,26 +144,13 @@ function renderData(data, templateFn, container){
 	container.innerHTML = temporaryData;
 }
 
-function getData(type, url, successFn, errorFn){
-	$.ajax({
-	  type,
-	  url,
-	  success: function(msg){
-	  	successFn(msg);
-	  },
-	  error: function (jqXHR, exception) {
-	  	let msg = errorFn(jqXHR, exception);
-			alert(msg);
-	  }
-	});
+function getData(url, successFn, errorFn){
+	fetch(url)
+		.then(response => response.json())
+		.then(result => successFn(result))
+		.catch(err => errorFn(err));
 }
 
-function getErrorMessage(jqXHR, exception) {
-	if (jqXHR.status === 0) { return 'Not connect.\n Verify Network.'; }
-  if (jqXHR.status == 404) { return 'Requested page not found. [404]'; }
-  if (jqXHR.status == 500) { return 'Internal Server Error [500].'; }
-  if (exception === 'parsererror') { return 'Requested JSON parse failed.'; }
-  if (exception === 'timeout') { return 'Time out error.'; }
-  if (exception === 'abort') { return 'Ajax request aborted.'; }
-  return 'Uncaught Error.\n' + jqXHR.responseText;
+function getErrorMessage(err){
+	showModal(err, modalErrorBgColor, btnCloseErrorColor);
 }

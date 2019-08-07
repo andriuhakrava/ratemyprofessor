@@ -34,7 +34,7 @@ closeMenuBtn.onclick = function() {
 }
 		
 function getFacultiesList() {
-	getData('GET', FACULTIESLIST_URL, showFacultiesList, getErrorMessage);
+	getData(FACULTIESLIST_URL, showFacultiesList, getErrorMessage);
 }
 
 function showFacultiesList(msg) {
@@ -45,7 +45,7 @@ function getProfessorsList(id) {
 	facultiesList.innerHTML = '';
 	facultiesList.classList.remove('faculties-new');
 
-	getData('GET', PROFESSORSLIST_URL + id, showProfessorsList, getErrorMessage);
+	getData(PROFESSORSLIST_URL + id, showProfessorsList, getErrorMessage);
 }
 
 function showProfessorsList(prf) {
@@ -60,7 +60,7 @@ function searchProfessor() {
 	}
 
 	if (queryProfessor.length > 0){
-		getData('GET', PROFESSOR_URL + queryProfessor, showProfessor, getErrorMessage);
+		getData(PROFESSOR_URL + queryProfessor, showProfessor, getErrorMessage);
 	} else {
 		searchResults.style.display = 'none';
 	}
@@ -107,28 +107,15 @@ function renderData(data, backgroundImg = '', templateFn, container){
 	container.innerHTML = temporaryData;
 }
 
-function getData(type, url, successFn, errorFn){
-	$.ajax({
-	  type,
-	  url,
-	  success: function(msg){
-	  	successFn(msg);
-	  },
-	  error: function (jqXHR, exception) {
-	  	let msg = errorFn(jqXHR, exception);
-			alert(msg);
-	  }
-	});
+function getData(url, successFn, errorFn){
+	fetch(url)
+		.then(response => response.json())
+		.then(result => successFn(result))
+		.catch(err => errorFn(err));
 }
 
-function getErrorMessage(jqXHR, exception) {
-	if (jqXHR.status === 0) { return 'Not connect.\n Verify Network.'; }
-  if (jqXHR.status == 404) { return 'Requested page not found. [404]'; }
-  if (jqXHR.status == 500) { return 'Internal Server Error [500].'; }
-  if (exception === 'parsererror') { return 'Requested JSON parse failed.'; }
-  if (exception === 'timeout') { return 'Time out error.'; }
-  if (exception === 'abort') { return 'Ajax request aborted.'; }
-  return 'Uncaught Error.\n' + jqXHR.responseText;
+function getErrorMessage(err){
+	alert(err);
 }
 
 function ScrollWidth () {
