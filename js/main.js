@@ -9,6 +9,7 @@ let openMenuBtn = document.querySelector('#page-menu'),
 	bgUrlProfessors = 'url(img/bg-faculties.png)',
 	scrollWidth = ScrollWidth();
 
+const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 const FACULTIESLIST_URL = 'http://univercity.milimapp.online/get_facult.php';
 const PROFESSORSLIST_URL = 'http://univercity.milimapp.online/get_prep.php?id=';
 const PROFESSOR_URL = 'http://univercity.milimapp.online/search_prep.php?q=';
@@ -108,7 +109,7 @@ function renderData(data, backgroundImg = '', templateFn, container){
 }
 
 function getData(url, successFn, errorFn){
-	fetch(url)
+	fetch(PROXY_URL + url)
 		.then(response => response.json())
 		.then(result => successFn(result))
 		.catch(err => errorFn(err));

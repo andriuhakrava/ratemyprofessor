@@ -1,5 +1,6 @@
 let id = get('id');
 
+const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 const ADDMARK_URL = `http://univercity.milimapp.online/add_mark.php?id_prep=${id}&point=`;
 const ADDCOMMENT_URL = `http://univercity.milimapp.online/insert_comment.php?id=${id}`;
 const ALLCOMMENTS_URL = `http://univercity.milimapp.online/get_comments_by_id.php?id=${id}`;
@@ -145,7 +146,7 @@ function renderData(data, templateFn, container){
 }
 
 function getData(url, successFn, errorFn){
-	fetch(url)
+	fetch(PROXY_URL + url)
 		.then(response => response.json())
 		.then(result => successFn(result))
 		.catch(err => errorFn(err));
